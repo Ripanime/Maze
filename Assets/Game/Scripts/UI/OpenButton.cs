@@ -1,15 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using System;
 
 public class OpenButton : MonoBehaviour
 {
-    [SerializeField] private string ButtonDownAnim;
-    [SerializeField] private string ButtonUpAnim;
-    [SerializeField] private GameObject GamePause;
-    [SerializeField] private GameObject Shop;
-    [SerializeField] private GameObject Settings;
+    [SerializeField] private string buttonDownAnim;
+    [SerializeField] private string buttonUpAnim;
+    [SerializeField] private GameObject state;
     [SerializeField] private GameManager manager;
     private Animator anim;
     private bool gamePauseIsActive;
@@ -19,30 +18,18 @@ public class OpenButton : MonoBehaviour
     }
     public void OnClick()
     {
-        gamePauseIsActive = !GamePause.activeInHierarchy;
-        if(GamePause.activeInHierarchy == true) 
+        gamePauseIsActive = !state.activeInHierarchy;
+        if(state.activeInHierarchy == true) 
         {
-            anim.SetTrigger(ButtonDownAnim);
-            GamePause.SetActive(gamePauseIsActive);
+            anim.SetTrigger(buttonDownAnim);
+            state.SetActive(gamePauseIsActive);
             manager.OnGamePause(gamePauseIsActive);
         }
         else 
         {
-            anim.SetTrigger(ButtonUpAnim);
-            GamePause.SetActive(gamePauseIsActive);
+            anim.SetTrigger(buttonUpAnim);
+            state.SetActive(gamePauseIsActive);
             manager.OnGamePause(gamePauseIsActive);
-        }
-        if (Shop.activeInHierarchy == true)
-        {
-            anim.SetTrigger(ButtonDownAnim);
-            Shop.SetActive(!Shop.activeInHierarchy);
-            manager.OnGamePause(Shop.activeInHierarchy);
-        }
-        if (Settings.activeInHierarchy == true)
-        {
-            anim.SetTrigger(ButtonDownAnim);
-            Settings.SetActive(!Settings.activeInHierarchy);
-            manager.OnGamePause(Settings.activeInHierarchy);
         }
     }
 }

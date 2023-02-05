@@ -132,21 +132,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a4bfe8f420c01c458118d1905d32394, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Checks: 0
-  Checked: 0
-  moveSpeed: 10
-  distance: 0.05
-  oneGridMoveHorizontal: 4
-  oneGridMoveVertical: 4
-  physicsCircle: 1.01
-  physicsScaler: 1.9
-  joystickMove: 0.8
-  checkTag: Check
-  movePoint: {fileID: 732026106144258222}
+  playerControllerData: {fileID: 0}
   joystick: {fileID: 0}
   colliderMask:
     serializedVersion: 2
     m_Bits: 64
+  movePoint: {fileID: 732026106144258222}
 --- !u!61 &732026105595363886
 BoxCollider2D:
   m_ObjectHideFlags: 0
