@@ -9,7 +9,7 @@ public class Finish : MonoBehaviour
     [SerializeField] private LevelFinish levelFinish;
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.TryGetComponent(out PlayerController playerController) && levelFinish.IsCompleted()) 
+        if (collision.gameObject.TryGetComponent(out PlayerControllerMove playerController) && levelFinish.IsCompleted()) 
         {
             manager.OnGameWin();
         }

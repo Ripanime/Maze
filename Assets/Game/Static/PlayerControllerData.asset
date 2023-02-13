@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42347f763a825df4d8f9ec75cdbc8410, type: 3}
   m_Name: PlayerControllerData
   m_EditorClassIdentifier: 
-  moveSpeed: 10
+  MoveSpeed: 10
   distance: 0.05
   oneGridMoveHorizontal: 4
   oneGridMoveVertical: 4

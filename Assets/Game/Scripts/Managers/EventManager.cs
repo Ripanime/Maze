@@ -5,6 +5,7 @@ public class EventManager : MonoBehaviour
     public static UnityEvent<int> OnCheckPressed = new UnityEvent<int>();
     public static UnityEvent<int> OnGoldChange = new UnityEvent<int>();
     public static UnityEvent<int> OnDiamondChange = new UnityEvent<int>();
+    public static UnityEvent<int> OnRemainingBonusChange = new UnityEvent<int>();
     public static void SendCheckPressed(int remChecks) 
     {
         OnCheckPressed.Invoke(remChecks);
@@ -16,5 +17,9 @@ public class EventManager : MonoBehaviour
     public static void SendDiamondChanged(int remDiamond) 
     {
         OnDiamondChange.Invoke(remDiamond);
+    }
+    public static void SendRemainingBonusChange(int remBonus) 
+    {
+        OnRemainingBonusChange.Invoke(remBonus);
     }
 }
