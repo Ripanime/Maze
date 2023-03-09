@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   durationTime: 10
   multiplier: 2
-  RemainingUse: 5
+  minRemainingUse: 0
+  maxRemainingUse: 999

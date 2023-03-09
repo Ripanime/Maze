@@ -9,13 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ced48e8b4c99a9d4ebd15163030bba87, type: 3}
-  m_Name: BonusPriceData
+  m_Script: {fileID: 11500000, guid: 7d03aea60e6e8b74ca80347e6f94ffb8, type: 3}
+  m_Name: BonusIncreaseTimeData
   m_EditorClassIdentifier: 
-  speedBuster: 126
-  increaseTime: 300
-  goThroughWall: 570
-  destroyTrapCertainDis: 4035
-  destroyAllTrap: 2208
-  suggestWay: 2167
-  tpToEnd: 1194
+  increaseTime: 10
+  minRemainingUse: 0
+  maxRemainingUse: 999
