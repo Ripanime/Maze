@@ -22,7 +22,7 @@ namespace BonusBase
         }
         public float ChangeMoveSpeed(float moveSpeed) 
         {
-           return moveSpeed *= speedBustMultiplier;
+            return moveSpeed *= speedBustMultiplier;
         }
     }
 }

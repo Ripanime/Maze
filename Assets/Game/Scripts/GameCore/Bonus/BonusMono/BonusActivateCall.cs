@@ -1,39 +1,48 @@
 using System.Collections;
+using System;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
-public class BonusCall : MonoBehaviour
+public class BonusActivateCall : MonoBehaviour
 {
+    public static bool isActive { get; private set; }
     [SerializeField] private TextMeshProUGUI bonusDelayText;
+    [SerializeField] private OpenButton button;
     [SerializeField] private float bonusDelay;
     [SerializeField] private float timerWaitTime;
 
     [SerializeField] private UnityEvent onBonusActivated;
     [SerializeField] private UnityEvent onBonusDeactivated;
-    [SerializeField] private UnityEvent onBonusBuy;
 
     private float timer = 0f;
-    public void BuyBonus() 
+    public void Call() 
     {
-        onBonusBuy.Invoke();
+        StartCoroutine(nameof(ActivateBonus));
     }
-    public IEnumerator ActivateBonus()
+    private IEnumerator ActivateBonus()
     {
         timer = 0f;
-
         onBonusActivated.Invoke();
+        isActive = true;
         StartCoroutine(nameof(Timer));
 
         yield return new WaitForSeconds(bonusDelay);
 
         onBonusDeactivated.Invoke();
+        isActive = false;
     }
-    private IEnumerator Timer() 
+    private IEnumerator Timer()
     {
-        while(timer <= bonusDelay) 
+        while(timer <= bonusDelay)
         {
-            bonusDelayText.text = (bonusDelay - timer).ToString();
+            if (button.isClosed) 
+            {
+                bonusDelayText.text = String.Empty;
+            }
+            else 
+            {
+                bonusDelayText.text = Math.Round(bonusDelay - timer, 1).ToString();
+            }
             yield return new WaitForSeconds(timerWaitTime);
             timer += timerWaitTime;
         }

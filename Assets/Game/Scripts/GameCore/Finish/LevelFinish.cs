@@ -4,14 +4,14 @@ using TMPro;
 /// <summary>
 /// Contains "withChecks" variations
 /// </summary>
-public enum GameType2
+public enum PathType
 {
     withChecks,
     withoutAnything
 };
 public class LevelFinish : MonoBehaviour
 {
-    [SerializeField] private GameType2 gameType;
+    [SerializeField] private PathType gameType;
     [SerializeField] private GameManager manager;
     [SerializeField] private TextEnable textEnable;
     [SerializeField] private CheckTrecker checkTrecker;
@@ -31,8 +31,8 @@ public class LevelFinish : MonoBehaviour
     {
         switch (gameType) 
         {
-            case GameType2.withChecks:
-                if (manager.GetStoppedGame())
+            case PathType.withChecks:
+                if (manager.isStopped)
                 {
                     return;
                 }
@@ -40,7 +40,6 @@ public class LevelFinish : MonoBehaviour
                 {
                     return;
                 }
-                Debug.Log(checkTrecker.Checked);
                 chechsChecked++;
 
                 if (chechsChecked != allChecks)
@@ -62,7 +61,7 @@ public class LevelFinish : MonoBehaviour
     {
         switch (gameType) 
         {
-            case GameType2.withChecks:
+            case PathType.withChecks:
                 return allChecks - chechsChecked <= 0;
             default:
                 return true;

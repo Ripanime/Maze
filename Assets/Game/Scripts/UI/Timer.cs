@@ -40,4 +40,12 @@ public class Timer : MonoBehaviour
         float seconds = Mathf.FloorToInt(currentTime % 60);
         textMesh.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
+    public void AddTime(float increaseTime) 
+    {
+        if(!isTimerOn && increaseTime < 0) 
+        {
+            return;
+        }
+        timeLeft += increaseTime;
+    }
 }

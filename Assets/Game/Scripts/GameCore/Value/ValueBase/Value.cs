@@ -19,7 +19,7 @@ namespace ValueBase
         {
             predictionNumber = 0;
             predictionNumber = numberOfValue + val;
-            if (predictionNumber >= minNumberOfValue && predictionNumber <= maxNumberOfValue)
+            if (predictionNumber > minNumberOfValue && predictionNumber < maxNumberOfValue)
             {
                 return true;
             }
@@ -33,7 +33,7 @@ namespace ValueBase
         {
             predictionNumber = 0;
             predictionNumber = numberOfValue - val;
-            if (predictionNumber >= minNumberOfValue && predictionNumber <= maxNumberOfValue)
+            if (predictionNumber > minNumberOfValue && predictionNumber < maxNumberOfValue)
             {
                 return true;
             }

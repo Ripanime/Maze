@@ -5,12 +5,8 @@ using TMPro;
 public class TextEnable : MonoBehaviour
 {
     [SerializeField] private float timeToAppear;
+    [SerializeField] private TextMeshProUGUI text;
     private float timeToDisopear;
-    private TextMeshProUGUI text;
-    private void Awake()
-    {
-        text = GetComponent<TextMeshProUGUI>();
-    }
 
     public void EnableText()
     {

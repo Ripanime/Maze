@@ -5,16 +5,22 @@ namespace BonusBase
     public class BonusInteractor : IBonusInteractor
     {
         readonly int price;
+        readonly int maximumRemUse;
+        readonly int minimumRemUse;
         readonly Value value;
+        readonly BonusType type;
 
         public bool isInteractorFail { get; private set; }
 
         public event Action<int> OnValueChange = delegate { };
-        public event Action<int> OnRemainignUseChange = delegate { };
-        public BonusInteractor(int price, int minRemValue, int maxRemValue)
+        public event Action<BonusType,int> OnRemainignUseChange = delegate { };
+        public BonusInteractor(int price, int minRemValue, int maxRemValue, BonusType type, int minimumRemUse, int maximumRemUse)
         {
             this.price = price;
             value = new Value(minRemValue, maxRemValue);
+            this.type = type;
+            this.minimumRemUse = minimumRemUse;
+            this.maximumRemUse = maximumRemUse;
         }
         public int AddRemainingUse(int remUse, int plusRemUse, int remValue)
         {
@@ -29,7 +35,7 @@ namespace BonusBase
             int newRemUse = remValue + plusRemUse;
 
             OnValueChange?.Invoke(valuePrediction);
-            OnRemainignUseChange?.Invoke(newRemUse);
+            OnRemainignUseChange?.Invoke(type,newRemUse);
 
             return newRemUse;
         }
@@ -43,14 +49,13 @@ namespace BonusBase
             isInteractorFail = false;
 
             int newRemUse = remUse - minusRemUse;
-
-            OnRemainignUseChange?.Invoke(newRemUse);
+            OnRemainignUseChange?.Invoke(type,newRemUse);
 
             return newRemUse;
         }
         private bool CanBuyBonus(int remUse, int remValue)
         {
-            if (remUse < 0)
+            if (remUse <= minimumRemUse || remUse >= maximumRemUse)
             {
                 return false;
             }
@@ -63,7 +68,7 @@ namespace BonusBase
         }
         private bool CanUseBonus(int remUse)
         {
-            if (remUse <= 0)
+            if (remUse <= minimumRemUse)
             {
                 return false;
             }

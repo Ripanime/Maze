@@ -4,7 +4,7 @@ using UnityEngine.Events;
 /// <summary>
 /// Contains "with timer" and "can die" variations
 /// </summary>
-public enum GameType1
+public enum GameType
 {
     withoutAnything,
     withTimer,
@@ -13,12 +13,12 @@ public enum GameType1
 };
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private GameType1 gameType;
+    public bool isStopped { get; private set; }
+    [SerializeField] private GameType gameType;
     [SerializeField] private Timer timer;
     private PathController[] paths;
     public UnityEvent OnGameWinEvent;
     public UnityEvent OnGameLoseEvent;
-    private bool isStopped = false;
     void Start()
     {
         paths = (PathController[])GameObject.FindObjectsOfType(typeof(PathController));
@@ -42,10 +42,6 @@ public class GameManager : MonoBehaviour
             OnGameType(isActive);
         }
     }
-    public bool GetStoppedGame() 
-    {
-        return isStopped;
-    }
     public void Paths(bool Active) 
     {
         foreach (var path in paths)
@@ -57,13 +53,13 @@ public class GameManager : MonoBehaviour
     {
         switch (gameType) 
         {
-            case GameType1.canDie:
+            case GameType.canDie:
                 Paths(!isActive);
                 break;
-            case GameType1.withTimer:
+            case GameType.withTimer:
                 timer.isTimerStopped = isActive;
                 break;
-            case GameType1.withTimerAndCanDie:
+            case GameType.withTimerAndCanDie:
                 Paths(!isActive);
                 timer.isTimerStopped = isActive;
                 break;
